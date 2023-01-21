@@ -1,0 +1,88 @@
+
+### Product creation
+POST http://localhost:8090/api/v1/product
+Content-Type: application/json
+
+{
+    "title":"Test Item 1",
+    "price":1,
+    "quantity":1
+}
+
+> {%
+    client.log(response.body)
+    client.global.set("product_id", response.body);
+%}
+
+### Product creation which already exists
+POST http://localhost:8090/api/v1/product
+Content-Type: application/json
+
+{
+  "title":"Test Item 1",
+  "price":1,
+  "quantity":1
+}
+
+
+### Product creation with invalid price
+POST http://localhost:8090/api/v1/product
+Content-Type: application/json
+
+{
+  "title":"Test Item 2",
+  "price":-5,
+  "quantity":1
+}
+
+
+### Product creation with invalid title
+POST http://localhost:8090/api/v1/product
+Content-Type: application/json
+
+{
+  "title":"   ",
+  "price":5,
+  "quantity":1
+}
+
+<> 2023-01-22T002744.400.json
+
+
+### Get all products
+GET http://localhost:8090/api/v1/product
+
+> {%
+    client.test("Only one product stored in database", function() {
+        client.assert(response.body.length === 1, "Database has another products");
+    });
+%}
+
+
+### Get updates about new orders as a stream
+GET http://localhost:8091/api/v1/order/stream
+Content-Type: application/stream+json
+
+### Order creation when not enough items in stock
+POST http://localhost:8091/api/v1/order
+Content-Type: application/json
+
+{
+    "quantity": 3,
+    "addressId": "456",
+    "productId": "{{product_id}}"
+}
+
+### Order creation
+POST http://localhost:8091/api/v1/order
+Content-Type: application/json
+
+{
+    "quantity": 1,
+    "addressId": "456",
+    "productId": "{{product_id}}"
+}
+
+
+
+

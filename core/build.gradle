@@ -1,0 +1,11 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.vvw'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+dependencies {
+    implementation 'org.axonframework:axon-configuration:4.6.0'
+}

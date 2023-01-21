@@ -1,0 +1,24 @@
+DROP DATABASE IF EXISTS axon;
+CREATE DATABASE axon;
+-- CREATE TABLE IF NOT EXISTS product
+-- (
+--     product_id varchar(255),
+--     title      varchar(255),
+--     price      decimal,
+--     quantity   int,
+--     created_at TIMESTAMP WITH TIME ZONE
+-- );
+--
+-- CREATE TABLE IF NOT EXISTS product_lookup
+-- (
+--     product_id varchar(255),
+--     title      varchar(255)
+-- );
+--
+-- CREATE TABLE IF NOT EXISTS orders
+-- (
+--     order_id   varchar(255),
+--     address_id varchar(255),
+--     product_id varchar(255),
+--     quantity   int
+-- )

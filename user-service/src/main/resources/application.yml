@@ -1,0 +1,36 @@
+server.port: 8092
+spring.application.name: user-service
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${instanceId:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://localhost:8071/eureka
+axon:
+  serializer:
+    general: jackson
+    events: jackson
+    messages: jackson
+  axonserver:
+    enabled: true
+    servers: localhost
+
+
+spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  sql.init:
+    mode: always
+    platform: postgres
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5433/postgres
+    name: postgres
+    password: postgres
+    username: postgres
+

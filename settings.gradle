@@ -1,0 +1,3 @@
+rootProject.name = 'axon'
+
+include 'product-service', 'order-service', 'user-service', 'payment-service', 'core'

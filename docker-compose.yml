@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+
+  axonserver:
+    image: axoniq/axonserver
+    container_name: axonserver
+    hostname: axonserver
+    environment:
+      AXONIQ_AXONSERVER_DEVMODE_ENABLED: true
+    volumes:
+      - ./axonserver/axonserver-data:/data
+      - ./axonserver/axonserver-events:/eventdata
+      - ./axonserver/axonserver-config:/config:ro
+    ports:
+      - '8024:8024'
+      - '8124:8124'
+      - '8224:8224'
+    networks:
+      - axon
+
+  postgres:
+    image: postgres:15.1-alpine
+    container_name: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    networks:
+      axon:
+        aliases:
+          - "postgres"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -h 127.0.0.1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+networks:
+  axon:
+    name: axon
+    driver: bridge
