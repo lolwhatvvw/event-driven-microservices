@@ -27,7 +27,7 @@ Orchestration is a way to coordinate sagas where a centralized controller tells 
 ![Saga.png](doc/SagaOrchestration.png)
 
 ## Requirements
-- [JDK 17](https://jdk.java.net/java-se-ri/17)  - gradle wrapper will use gradle 7.5.1, which supports java 18.
+- [JDK 17](https://jdk.java.net/java-se-ri/17)  - gradle wrapper will use gradle 7.6, which supports java 19.
 - [Docker 20.10+](https://www.docker.com/products/docker-desktop/) - starting from version 20.10, the Docker Engine supports communicating with the Docker host via host.docker.internal on Linux.
 - [Docker-compose](https://docs.docker.com/compose/install/) - I have used Docker Compose 2.14.2 with Docker 20.10.22
 
